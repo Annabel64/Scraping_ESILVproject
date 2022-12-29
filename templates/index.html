@@ -3,29 +3,34 @@
 
 <head>
     <title>Price Comparison Tool</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <h1>Price Comparison Tool</h1>
-    <form method="POST">
-        <label for="article">Article:</label><br>
-        <input type="text" id="article" name="article"><br>
-        <input type="submit" value="Compare Prices">
-    </form>
-    {% if prices %}
-    <table>
-        <tr>
-            <th>Site</th>
-            <th>Price</th>
-        </tr>
-        {% for site, price in prices.items() %}
-        <tr>
-            <td>{{ site }}</td>
-            <td>{{ price }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-    {% endif %}
+    <header>
+        <h1>Price Comparison Tool</h1>
+    </header>
+    <main>
+        <form method="POST">
+            <label for="article">Article:</label>
+            <input type="text" id="article" name="article">
+            <button type="submit">Compare Prices</button>
+        </form>
+        {% if prices %}
+        <table>
+            <tr>
+                <th>Site</th>
+                <th>Price</th>
+            </tr>
+            {% for site, price in prices.items() %}
+            <tr>
+                <td>{{ site }}</td>
+                <td>{{ price }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+    </main>
 </body>
 
 </html>

@@ -1,0 +1,127 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+}
+
+main {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+form label {
+    width: 100px;
+    text-align: right;
+    margin-right: 20px;
+}
+
+form input[type="text"] {
+    flex-grow: 1;
+    padding: 5px;
+    border: 1px solid #ccc;
+}
+
+form button[type="submit"] {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+form button[type="submit"]:hover {
+    background-color: #444;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th,
+td {
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+th {
+    background-color: #333;
+    color: #fff;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Ajout de quelques styles supplémentaires pour améliorer l'apparence de l'interface */
+
+/* Redimensionnement de la police pour la rendre plus lisible */
+body {
+    font-size: 16px;
+}
+
+/* Ajout d'une bordure arrondie aux éléments de formulaire */
+form input[type="text"],
+form button[type="submit"] {
+    border-radius: 5px;
+}
+
+/* Ajout d'une ombre portée aux éléments de formulaire au survol */
+form input[type="text"]:hover,
+form button[type="submit"]:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Ajout d'un style de transition pour que les changements de couleur de fond de l'élément de formulaire soient plus doux */
+form button[type="submit"] {
+    transition: background-color 0.5s ease;
+}
+
+/* Ajout d'une bordure arrondie et d'une ombre portée à la table */
+table {
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Ajout d'un style de transition pour que les changements de couleur de fond de l'élément de formulaire soient plus doux */
+form button[type="submit"] {
+    transition: background-color 0.5s ease;
+}
+
+/* Ajout d'une bordure arrondie et d'une ombre portée à la table */
+table {
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Ajout d'un style de transition pour que les changements de couleur de fond des lignes paires de la table soient plus doux */
+tr:nth-child(even) {
+    transition: background-color 0.5s ease;
+}
+
+/* Ajout d'une bordure arrondie et d'une ombre portée aux cellules du tableau au survol */
+td:hover,
+th:hover {
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
