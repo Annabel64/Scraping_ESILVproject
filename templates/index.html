@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Price Comparison Tool</title>
+</head>
+
+<body>
+    <h1>Price Comparison Tool</h1>
+    <form method="POST">
+        <label for="article">Article:</label><br>
+        <input type="text" id="article" name="article"><br>
+        <input type="submit" value="Compare Prices">
+    </form>
+    {% if prices %}
+    <table>
+        <tr>
+            <th>Site</th>
+            <th>Price</th>
+        </tr>
+        {% for site, price in prices.items() %}
+        <tr>
+            <td>{{ site }}</td>
+            <td>{{ price }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+</body>
+
+</html>
