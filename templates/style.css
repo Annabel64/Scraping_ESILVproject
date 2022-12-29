@@ -12,7 +12,18 @@ header {
 }
 
 header h1 {
+    font-size: 3rem;
     margin: 0;
+}
+
+h2 {
+    font-size: 0.7rem;
+    /* Diminue la taille de la police */
+}
+
+h3 {
+    font-size: 0.7rem;
+    /* Diminue la taille de la police */
 }
 
 main {
