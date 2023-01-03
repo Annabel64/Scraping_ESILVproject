@@ -15,19 +15,23 @@
       <form method="POST">
         <label for="article">Article:</label>
         <input type="text" id="article" name="article" />
-        <button type="submit">Compare Prices</button>
+        <button type="submit">Search</button>
       </form>
 
       {% if prices %}
       <table>
         <tr>
           <th>Site</th>
+          <th>Name of the article</th>
           <th>Price</th>
+          <th>Image</th>
         </tr>
-        {% for site, price in prices.items() %}
+        {% for site in names %}
         <tr>
           <td>{{ site }}</td>
-          <td>{{ price }}</td>
+          <td>{{ names[site] }}</td>
+          <td>{{ prices[site] }}</td>
+          <td>{{ images[site] }}</td>
         </tr>
         {% endfor %}
       </table>
