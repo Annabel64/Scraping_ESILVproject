@@ -40,8 +40,8 @@ def compare_prices():
     denicheur_soup = BeautifulSoup(denicheur_response.text, 'html.parser')
     
     # Extract the information from the HTML content
-    denicheur_prices = denicheur_soup.find_all(class_="Text--1d9bgzp ilIDIB")
-    denicheur_names = denicheur_soup.find_all(class_="Text--1d9bgzp bYZpdo titlesmalltext")
+    denicheur_prices = denicheur_soup.find_all(class_="Text--1g7udhx dACZCW")
+    denicheur_names = denicheur_soup.find_all(class_="Text--1g7udhx bzdbPv titlesmalltext")
     denicheur_images = denicheur_soup.find_all(class_="ImageContainer-sc-4o01vu-2 WqEZk")
     denicheur_name = None
     denicheur_image = None
