@@ -13,8 +13,8 @@ def compare_prices():
     # Get the article name from the form submission
     article = request.form['article']
     
-    # Make a request to Amazon and parse the HTML content
-    amazon_url = 'https://www.amazon.com/s?k=' + article
+    # Make a request to amazon and parse the HTML content
+    amazon_url = 'https://www.amazon.fr/s?k=' + article
     amazon_response = requests.get(amazon_url, verify=False)
     amazon_soup = BeautifulSoup(amazon_response.text, 'html.parser')
 
@@ -26,11 +26,30 @@ def compare_prices():
     amazon_image = None
     amazon_price = None
     if amazon_names:
-      amazon_name = amazon_names[0].text
+      amazon_name = None
     if amazon_images:
-      amazon_image = amazon_images['src'].text
+      amazon_image = None
     if amazon_prices:
-      amazon_price = amazon_prices[0].text
+      amazon_price = None
+
+    # Make a request to LDLC and parse the HTML content
+    backMarket_url = 'https://www.backmarket.fr/fr-fr/search?q=' + article+"/"
+    backMarket_response = requests.get(backMarket_url, verify=False)
+    backMarket_soup = BeautifulSoup(backMarket_response.text, 'html.parser')
+
+    # Extract the information from the HTML content
+    backMarket_names = backMarket_soup.find_all(class_="body-1-bold duration-200 line-clamp-1 md:mb-1 md:mt-0 mt-1 normal-case overflow-ellipsis overflow-hidden text-black transition-all")
+    backMarket_images = backMarket_soup.find_all(class_="flex-shrink-0 md:h-[13.8rem] md:mx-0 md:my-4 md:relative md:w-full mr-4")
+    backMarket_prices = backMarket_soup.find_all(class_="body-2-bold text-black")
+    backMarket_name = None
+    backMarket_image = None
+    backMarket_price = None
+    if backMarket_names:
+      backMarket_name = backMarket_names[0].text.replace(" ","").replace("\n"," ")
+    if backMarket_images:
+      backMarket_image = None
+    if backMarket_prices:
+      backMarket_price = backMarket_prices[0].text.replace(" ","").replace("\n"," ")
       
 
   
@@ -52,23 +71,46 @@ def compare_prices():
     if denicheur_images:
       denicheur_image = denicheur_images['src']
     if denicheur_prices:
-      denicheur_monnaie = denicheur_prices[0].text.split('\xa0')[1]
-      denicheur_prices = [denicheur_prices[i].text.replace(",", ".") for i in range(len(denicheur_prices))]
-      denicheur_prices = [float(price.split('\xa0')[0]) for price in denicheur_prices]
-      denicheur_price = denicheur_prices[0]
+      denicheur_price = denicheur_prices[0].text
+
+
+    # Make a request to LDLC and parse the HTML content
+    ldlc_url = 'https://www.ldlc.com/recherche/' + article+"/"
+    ldlc_response = requests.get(ldlc_url, verify=False)
+    ldlc_soup = BeautifulSoup(ldlc_response.text, 'html.parser')
+    
+    # Extract the information from the HTML content
+    ldlc_prices = ldlc_soup.find_all(class_="price")
+    ldlc_names = ldlc_soup.find_all(class_="title-3")
+    ldlc_images = ldlc_soup.find_all(class_="pic")
+    ldlc_name = None
+    ldlc_image = None
+    ldlc_price = None
+    if ldlc_names:
+      ldlc_name = ldlc_names[0].text
+    if ldlc_images:
+      ldlc_image = None
+    if ldlc_prices:
+      ldlc_price = ldlc_prices[0].text
     
       
     # Add the names to the names dictionary
     names['Amazon'] = amazon_name
+    names['Back Market'] = backMarket_name
     names['Le Dénicheur'] = denicheur_name
+    names['LDLC'] = ldlc_name
 
     # Add the images to the images dictionary
     images['Amazon'] = amazon_image
+    images['Back Market'] = backMarket_image
     images['Le Dénicheur'] = denicheur_image
+    images['LDLC'] = ldlc_image
 
     # Add the prices to the prices dictionary
     prices['Amazon'] = amazon_price
-    prices['Le Dénicheur'] = str(denicheur_price) + " " + str(denicheur_monnaie)
+    prices['Back Market'] = backMarket_price
+    prices['Le Dénicheur'] = denicheur_price
+    prices['LDLC'] = ldlc_price
 
   
   return render_template('index.html', prices=prices, names=names, images=images)

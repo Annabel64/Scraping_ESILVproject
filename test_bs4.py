@@ -1,23 +1,14 @@
 import requests
 from bs4 import BeautifulSoup
 
-url = "https://ledenicheur.fr/search?search=iphone%2012"
+url = "https://fr.shopping.rakuten.com/search/iphone+12"
 html = requests.get(url).text
 soup = BeautifulSoup(html, 'html.parser')
-prices = soup.find_all(class_="Text--1d9bgzp ilIDIB")
-nom=soup.find_all(class_="Text--1d9bgzp bYZpdo titlesmalltext")
-img = soup.find(class_="ImageContainer-sc-4o01vu-2 WqEZk")
-price = None
-monnaie = None
-if prices:
-    monnaie = prices[0].text.split('\xa0')[1]
-    prices = [prices[i].text.replace(",", ".") for i in range(len(prices))]
-    prices = [float(price.split('\xa0')[0]) for price in prices]
-    price = prices[0]
+prices = soup.find_all(class_="new_product_advertised")
+nom=soup.find_all(class_="description_styleTitle_KPO lh-title normal mv0 b di")
+img = soup.find(class_="productList_layoutImgGrid_902")
 
 
-
-print("prix : ", price)
-print("monnaie : ", monnaie)
+print("prix : ", prices)
 print("image : ", img)
-print("nom : ", nom[0].text)
+print("nom : ", nom)
